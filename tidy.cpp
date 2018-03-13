@@ -26,24 +26,31 @@ int main(int argc, char* argv[]) {
 
 string solve(string s)
 {
-    bool cont=true;
-    while(cont)
+    
+    int i=0;
+    for(i=0; i<s.size()-1; i++)
     {
-        cont=false;
-        for(int i=0; i<s.size()-1; i++)
+        if(s[i]>s[i+1])
         {
-            if(s[i]>s[i+1])
+            int j=i;
+            s[j]--;
+            for(j=i+1; j<s.size(); j++)
             {
-                s[i]--;
-                for(int j=i+1; j<s.size(); j++)
-                {
-                    s[j]='9';
-                }
-                cont = true;
-                break;
+                s[j]='9';
             }
+            break;
         }
     }
+    
+    for(int j=i-1; j>=0; j--)
+    {
+        if(s[j]>s[j+1])
+        {
+            s[j]--;
+            s[j+1]='9';
+        }
+    }
+    
     if(s[0]=='0')
         s=s.substr(1, string::npos);
     return s;
