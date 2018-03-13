@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
 
     ifstream in(argv[1]);
     ofstream out(argv[2]);
-
+    
     int n;
     in>>n;
     for(int round=1; round<=n; round++)
@@ -34,7 +34,7 @@ string solve(string s)
         {
             if(s[i]>s[i+1])
             {
-                s=minOne(s, i);
+                s[i]--;
                 for(int j=i+1; j<s.size(); j++)
                 {
                     s[j]='9';
@@ -47,15 +47,4 @@ string solve(string s)
     if(s[0]=='0')
         s=s.substr(1, string::npos);
     return s;
-}
-
-string minOne(string num, int index)
-{
-    if(num[index]=='0')
-    {
-        num[index]='9';
-        num=minOne(num, index-1);
-    } else
-        num[index]--;
-    return num;
 }
